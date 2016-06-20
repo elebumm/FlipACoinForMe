@@ -5,7 +5,7 @@ import sqlite3
 import random
 from config import username, password
 
-word_to_match = [r'\bcoinBot\b', r'\bflip me a coin\b', r'\b50/50\b', '\bcoin flip\b']
+word_to_match = [r'\bcoinBot\b', r'\bflip me a coin\b', r'\bcoin\b', '\bcoin flip\b']
 
 # configuration for reddit login and sqlite3 database.
 conn = sqlite3.connect('coin')
