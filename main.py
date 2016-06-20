@@ -5,7 +5,8 @@ import sqlite3
 import random
 from config import username, password
 
-word_to_match = [r'\bcoinBot\b', r'\bflip me a coin\b', r'\bcoin\b', '\bcoin flip\b']
+word_to_match = [r'\bcoinBot\b', r'\bflip me a coin\b', r'\bcoin\b', r'\bcoin flip\b', r'\bflipacoinforme\b',
+                 r'\bflip a coin for me\b']
 
 # configuration for reddit login and sqlite3 database.
 conn = sqlite3.connect('coin')
@@ -17,6 +18,7 @@ storage = []
 r.login(username, password, disable_warning=True)
 
 
+# flips coin
 def coin_flip():
     if random.randrange(0, 100) < 50:
         return 'Heads'
@@ -24,6 +26,7 @@ def coin_flip():
         return 'Tails'
 
 
+# main bot loop
 def run_bot():
     subreddit = r.get_subreddit("all")
     comments = subreddit.get_comments(limit=200)
@@ -35,6 +38,11 @@ def run_bot():
             print("Flipping Coin for reddit user: " + str(comment.author) + ". The result was " + str(coin_toss_result))
             storage.append(comment.id)
             comment.reply('The coin flip resulted in... **' + coin_toss_result + '**.' +
+                          '\n'
+                          '\n'
+                          '\n'
+                          'Want me to flip a coin? Comment "flip me a coin" or "coin flip" and I will come as fast as '
+                          'I can :)'
                           '\n'
                           '\n'
                           '*****'
@@ -53,6 +61,10 @@ while True:
     try:
         run_bot()
         time.sleep(3)
-    except:
+    except praw.errors.APIException(error_type=None, message=None):
+        print('APIException')
+        pass
+    except praw.errors.HTTPException(_raw=None):
+        print('HTTP Exception')
         pass
 

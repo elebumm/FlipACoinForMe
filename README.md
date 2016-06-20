@@ -9,9 +9,11 @@ Created by [/u/LewisTheScot](https://www.reddit.com/user/LewisTheScot/)
 
 Trigger words
 
-- 50/50
+- coin
 - coinBot
 - flip me a coin 
 - coin flip
+- flip a coin for me
+
 
 Feel free to submit any code that you think will make the bot better :)
