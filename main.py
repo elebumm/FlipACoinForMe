@@ -41,7 +41,7 @@ def run_bot():
                           '\n'
                           '\n'
                           '\n'
-                          'Want me to flip a coin? Comment "flip me a coin" or "coin flip" and I will come as fast as '
+                          'Want me to flip a coin? Comment "flip me a coin" or "!coinflip" and I will come as fast as '
                           'I can :)'
                           '\n'
                           '\n'
