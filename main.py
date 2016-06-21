@@ -5,7 +5,7 @@ import sqlite3
 import random
 from config import username, password
 
-word_to_match = [r'\bcoinBot\b', r'\bflip me a coin\b', r'\bcoin\b', r'\bcoin flip\b', r'\bflipacoinforme\b',
+word_to_match = [r'\bcoinBot\b', r'\bflip me a coin\b', r'\b!coinflip\b', r'\bcoin flip\b', r'\bflipacoinforme\b',
                  r'\bflip a coin for me\b']
 
 # configuration for reddit login and sqlite3 database.
@@ -47,7 +47,7 @@ def run_bot():
                           '\n'
                           '*****'
                           '\n'
-                          '>I am a bot! Did I mess something up?' +
+                          '>I am a bot! Did I mess something up? ' +
                           '[Report an issue here!](https://github.com/elebumm/FlipACoinForMe)')
             c.execute("INSERT INTO coin (commentID, author, subreddit, comment, result) VALUES (?, ?, ?, ?, ?)",
                       (str(comment.id), str(comment.author), str(comment.subreddit), str(comment.body),
@@ -61,10 +61,6 @@ while True:
     try:
         run_bot()
         time.sleep(3)
-    except praw.errors.APIException(error_type=None, message=None):
-        print('APIException')
-        pass
-    except praw.errors.HTTPException(_raw=None):
-        print('HTTP Exception')
-        pass
+    except:
+        continue
 
